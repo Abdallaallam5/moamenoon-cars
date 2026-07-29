@@ -1,0 +1,130 @@
+/**
+ * responsive.css
+ * -----------------------------------------------------------------------
+ * Breakpoints: 1200px (small desktop), 992px (tablet), 768px (mobile),
+ * 480px (small mobile). Mobile-first overrides layered on top of main.css
+ * and components.css.
+ * -----------------------------------------------------------------------
+ */
+
+/* ============================================================
+   1200px — small desktop
+   ============================================================ */
+@media (max-width: 1200px) {
+  .listings-grid, .listings-grid--full { grid-template-columns: repeat(2, 1fr); }
+  .categories-grid { grid-template-columns: repeat(3, 1fr); }
+  .brands-grid { grid-template-columns: repeat(4, 1fr); }
+  .dash-stats-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ============================================================
+   992px — tablet
+   ============================================================ */
+@media (max-width: 992px) {
+  .navbar__nav { display: none; }
+  .navbar__burger { display: flex; }
+  .navbar__actions .btn--ghost, .navbar__actions .btn--primary { display: none; }
+
+  .search-box__form { grid-template-columns: 1fr 1fr; }
+  .search-box__submit { grid-column: span 2; }
+  .advanced-search { grid-template-columns: repeat(2, 1fr); }
+
+  .why-grid { grid-template-columns: 1fr; }
+  .listing-layout { grid-template-columns: 1fr; }
+  .filters-sidebar { position: static; }
+  .filters-toggle-mobile { display: inline-flex; }
+  .filters-sidebar { display: none; }
+  .filters-sidebar.is-open { display: block; }
+
+  .details-layout { grid-template-columns: 1fr; }
+  .auth-layout { grid-template-columns: 1fr; }
+  .auth-visual { display: none; }
+
+  .contact-layout { grid-template-columns: 1fr; }
+  .about-story__grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .profile-layout { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+
+  .dash-layout { grid-template-columns: 1fr; }
+  .dash-sidebar {
+    position: fixed; inset-inline-start: 0; top: 0; height: 100vh; width: 260px;
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+    z-index: var(--z-modal);
+  }
+  html[dir="rtl"] .dash-sidebar { transform: translateX(100%); }
+  .dash-sidebar.is-open { transform: translateX(0); }
+  .dash-burger { display: block; }
+  .dash-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   768px — mobile
+   ============================================================ */
+@media (max-width: 768px) {
+  :root { --navbar-height: 72px; }
+
+  .hero { min-height: 100vh; }
+  .hero__title { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .search-box { padding: var(--space-4); }
+  .search-box__form { grid-template-columns: 1fr; }
+  .search-box__submit { grid-column: span 1; }
+  .advanced-search { grid-template-columns: 1fr; }
+  .search-box__tabs { overflow-x: auto; }
+
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .listings-grid, .listings-grid--full { grid-template-columns: 1fr; }
+  .brands-grid { grid-template-columns: repeat(3, 1fr); }
+
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .values-grid { grid-template-columns: 1fr; }
+
+  .newsletter-inner { flex-direction: column; text-align: center; }
+  .newsletter-form { width: 100%; flex-direction: column; }
+  .newsletter-form input { min-width: 0; width: 100%; }
+
+  .footer__grid { grid-template-columns: 1fr; gap: var(--space-5); }
+  .footer__bottom-inner { flex-direction: column; text-align: center; }
+
+  .form-row { grid-template-columns: 1fr; }
+  .seller-card__actions { grid-template-columns: 1fr; }
+  .specs-grid { grid-template-columns: 1fr; }
+
+  .dash-main { padding: var(--space-4); }
+  .dash-stats-grid { grid-template-columns: 1fr; }
+  .details-title-block { flex-direction: column; align-items: flex-start; }
+}
+
+/* ============================================================
+   480px — small mobile
+   ============================================================ */
+@media (max-width: 480px) {
+  .container { padding-inline: var(--space-4); }
+  .section { padding-block: var(--space-6); }
+  .categories-grid { grid-template-columns: 1fr; }
+  .brands-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: 1fr; }
+  .eyebrow { font-size: 0.75rem; }
+}
+
+/* ============================================================
+   Mobile nav drawer (burger menu open state)
+   ============================================================ */
+@media (max-width: 992px) {
+  .navbar__nav.is-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: var(--navbar-height) 0 0 0;
+    background: var(--color-bg);
+    padding: var(--space-6);
+    gap: var(--space-5);
+    z-index: var(--z-navbar);
+    overflow-y: auto;
+  }
+  .navbar__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .navbar__burger.is-open span:nth-child(2) { opacity: 0; }
+  .navbar__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+}

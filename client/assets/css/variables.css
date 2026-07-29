@@ -1,0 +1,78 @@
+/**
+ * variables.css
+ * -----------------------------------------------------------------------
+ * Design tokens for Moamenoon Cars. Every other stylesheet reads from
+ * these CSS custom properties — never hardcode colors/spacing elsewhere.
+ * -----------------------------------------------------------------------
+ */
+
+:root {
+  /* ---------------- Brand colors ---------------- */
+  --color-primary: #C1121F;
+  --color-primary-dark: #8E0D17;
+  --color-primary-light: #E63946;
+  --color-secondary: #000000;
+  --color-accent: #E63946;
+
+  /* ---------------- Surfaces ---------------- */
+  --color-bg: #111111;
+  --color-bg-alt: #0A0A0A;
+  --color-card: #1B1B1B;
+  --color-card-hover: #222222;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+
+  /* ---------------- Text ---------------- */
+  --color-text: #FFFFFF;
+  --color-text-muted: #A3A3A3;
+  --color-text-faint: #6B6B6B;
+
+  /* ---------------- Status ---------------- */
+  --color-success: #2ECC71;
+  --color-warning: #F5A623;
+  --color-danger: #E63946;
+
+  /* ---------------- Typography ---------------- */
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* ---------------- Radius ---------------- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* ---------------- Shadows ---------------- */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 40px rgba(193, 18, 31, 0.25);
+
+  /* ---------------- Spacing scale ---------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* ---------------- Layout ---------------- */
+  --container-max: 1280px;
+  --navbar-height: 84px;
+
+  /* ---------------- Transitions ---------------- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.2s var(--ease);
+  --transition-base: 0.35s var(--ease);
+  --transition-slow: 0.6s var(--ease);
+
+  /* ---------------- Z-index scale ---------------- */
+  --z-navbar: 100;
+  --z-dropdown: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+}

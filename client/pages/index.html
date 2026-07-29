@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Moamenoon Cars | Premium Vehicle Marketplace</title>
+<meta name="description" content="Moamenoon Cars — buy and sell premium cars, motorcycles and trucks." />
+
+<!-- Favicon -->
+<link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+
+<!-- Fonts: Oswald (display / automotive signage feel) + Inter (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+<!-- Swiper.js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.1.4/swiper-bundle.min.css" />
+
+<!-- AOS Animation -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
+
+<!-- App styles -->
+<link rel="stylesheet" href="../assets/css/variables.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/components.css" />
+<link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body class="page-home">
+
+<!-- ========================================================= -->
+<!-- NAVBAR -->
+<!-- ========================================================= -->
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <span class="navbar__logo-mark">M</span>
+      <span class="navbar__logo-text">MOAMENOON <em>CARS</em></span>
+    </a>
+
+    <nav class="navbar__nav" id="navbarNav">
+      <a href="index.html" class="navbar__link is-active" data-i18n="nav.home">Home</a>
+      <a href="cars.html" class="navbar__link" data-i18n="nav.cars">Cars</a>
+      <a href="motorcycles.html" class="navbar__link" data-i18n="nav.motorcycles">Motorcycles</a>
+      <a href="trucks.html" class="navbar__link" data-i18n="nav.trucks">Trucks</a>
+      <a href="about.html" class="navbar__link" data-i18n="nav.about">About</a>
+      <a href="contact.html" class="navbar__link" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <div class="navbar__actions">
+      <button class="lang-switch" id="langSwitch" aria-label="Switch language">
+        <i class="fa-solid fa-globe"></i>
+        <span id="langSwitchLabel">العربية</span>
+      </button>
+      <a href="favorites.html" class="navbar__icon-btn" aria-label="Favorites">
+        <i class="fa-regular fa-heart"></i>
+      </a>
+      <a href="login.html" class="btn btn--ghost btn--sm" data-i18n="nav.login">Login</a>
+      <a href="register.html" class="btn btn--primary btn--sm" data-i18n="nav.register">Sell a Vehicle</a>
+    </div>
+
+    <button class="navbar__burger" id="navbarBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ========================================================= -->
+<!-- HERO -->
+<!-- ========================================================= -->
+<section class="hero">
+  <div class="hero__bg">
+    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2000&auto=format&fit=crop" alt="" />
+    <div class="hero__overlay"></div>
+    <div class="hero__stripe"></div>
+  </div>
+
+  <div class="container hero__content" data-aos="fade-up">
+    <span class="eyebrow">
+      <i class="fa-solid fa-bolt"></i> <span data-i18n="hero.eyebrow">Egypt's Premium Vehicle Marketplace</span>
+    </span>
+    <h1 class="hero__title" data-i18n="hero.title">
+      Find Your Next<br /><span class="text-accent">Car, Bike or Truck</span>
+    </h1>
+    <p class="hero__subtitle" data-i18n="hero.subtitle">
+      Thousands of verified listings from trusted sellers. Search smarter, drive better.
+    </p>
+
+    <!-- SEARCH BOX -->
+    <div class="search-box glass">
+      <div class="search-box__tabs" role="tablist">
+        <button class="search-tab is-active" data-type="car" role="tab">
+          <i class="fa-solid fa-car-side"></i> <span data-i18n="search.tabs.cars">Cars</span>
+        </button>
+        <button class="search-tab" data-type="motorcycle" role="tab">
+          <i class="fa-solid fa-motorcycle"></i> <span data-i18n="search.tabs.motorcycles">Motorcycles</span>
+        </button>
+        <button class="search-tab" data-type="truck" role="tab">
+          <i class="fa-solid fa-truck"></i> <span data-i18n="search.tabs.trucks">Trucks</span>
+        </button>
+      </div>
+
+      <form class="search-box__form" id="quickSearchForm">
+        <div class="form-field">
+          <label for="searchKeyword" data-i18n="search.keyword">Keyword</label>
+          <input type="text" id="searchKeyword" placeholder="e.g. Mercedes C200, Yamaha R1..." />
+        </div>
+        <div class="form-field">
+          <label for="searchBrand" data-i18n="search.brand">Brand</label>
+          <select id="searchBrand">
+            <option value="" data-i18n="search.anyBrand">Any Brand</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="searchPriceTo" data-i18n="search.priceTo">Max Price</label>
+          <input type="number" id="searchPriceTo" placeholder="$ 50,000" />
+        </div>
+        <button type="submit" class="btn btn--primary search-box__submit">
+          <i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="search.button">Search</span>
+        </button>
+      </form>
+
+      <button class="search-box__advanced-toggle" id="advancedToggle" type="button">
+        <span data-i18n="search.advanced">Advanced Search</span> <i class="fa-solid fa-chevron-down"></i>
+      </button>
+
+      <!-- ADVANCED SEARCH PANEL -->
+      <div class="advanced-search" id="advancedSearch">
+        <div class="form-field">
+          <label for="advModel" data-i18n="search.model">Model</label>
+          <input type="text" id="advModel" placeholder="e.g. Civic" />
+        </div>
+        <div class="form-field">
+          <label for="advYear" data-i18n="search.year">Year</label>
+          <select id="advYear"><option value="" data-i18n="search.anyYear">Any Year</option></select>
+        </div>
+        <div class="form-field">
+          <label for="advFuel" data-i18n="search.fuel">Fuel</label>
+          <select id="advFuel">
+            <option value="" data-i18n="search.anyFuel">Any Fuel</option>
+            <option value="petrol" data-i18n="fuel.petrol">Petrol</option>
+            <option value="diesel" data-i18n="fuel.diesel">Diesel</option>
+            <option value="electric" data-i18n="fuel.electric">Electric</option>
+            <option value="hybrid" data-i18n="fuel.hybrid">Hybrid</option>
+            <option value="lpg" data-i18n="fuel.lpg">LPG</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="advTransmission" data-i18n="search.transmission">Transmission</label>
+          <select id="advTransmission">
+            <option value="" data-i18n="search.anyTransmission">Any</option>
+            <option value="manual" data-i18n="transmission.manual">Manual</option>
+            <option value="automatic" data-i18n="transmission.automatic">Automatic</option>
+            <option value="semi-automatic" data-i18n="transmission.semi">Semi-Automatic</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="advPriceFrom" data-i18n="search.priceFrom">Min Price</label>
+          <input type="number" id="advPriceFrom" placeholder="$ 0" />
+        </div>
+        <div class="form-field">
+          <label for="advMileage" data-i18n="search.mileage">Max Mileage</label>
+          <input type="number" id="advMileage" placeholder="km" />
+        </div>
+        <div class="form-field">
+          <label for="advCondition" data-i18n="search.condition">Condition</label>
+          <select id="advCondition">
+            <option value="" data-i18n="search.anyCondition">Any Condition</option>
+            <option value="new" data-i18n="condition.new">New</option>
+            <option value="used" data-i18n="condition.used">Used</option>
+            <option value="certified-pre-owned" data-i18n="condition.certified">Certified Pre-Owned</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- FEATURED CATEGORIES -->
+<!-- ========================================================= -->
+<section class="section categories-section">
+  <div class="container">
+    <div class="section-heading" data-aos="fade-up">
+      <span class="section-heading__eyebrow" data-i18n="categories.eyebrow">Browse by Category</span>
+      <h2 data-i18n="categories.title">Featured Categories</h2>
+    </div>
+
+    <div class="categories-grid" id="categoriesGrid">
+      <!-- Populated by JS, static fallback below -->
+      <a href="cars.html?category=luxury" class="category-card" data-aos="fade-up" data-aos-delay="0">
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=800&auto=format&fit=crop" alt="Luxury Cars" />
+        <div class="category-card__label"><i class="fa-solid fa-gem"></i><span data-i18n="categories.luxury">Luxury Cars</span></div>
+      </a>
+      <a href="cars.html?category=suv" class="category-card" data-aos="fade-up" data-aos-delay="50">
+        <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=800&auto=format&fit=crop" alt="SUV" />
+        <div class="category-card__label"><i class="fa-solid fa-truck-monster"></i><span data-i18n="categories.suv">SUV</span></div>
+      </a>
+      <a href="cars.html?category=electric" class="category-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=800&auto=format&fit=crop" alt="Electric" />
+        <div class="category-card__label"><i class="fa-solid fa-bolt"></i><span data-i18n="categories.electric">Electric</span></div>
+      </a>
+      <a href="cars.html?category=sports" class="category-card" data-aos="fade-up" data-aos-delay="150">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop" alt="Sports" />
+        <div class="category-card__label"><i class="fa-solid fa-flag-checkered"></i><span data-i18n="categories.sports">Sports</span></div>
+      </a>
+      <a href="trucks.html?category=pickup" class="category-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://images.unsplash.com/photo-1571127236794-81c0bbfe1ce3?q=80&w=800&auto=format&fit=crop" alt="Pickup" />
+        <div class="category-card__label"><i class="fa-solid fa-truck-pickup"></i><span data-i18n="categories.pickup">Pickup</span></div>
+      </a>
+      <a href="motorcycles.html" class="category-card" data-aos="fade-up" data-aos-delay="250">
+        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=800&auto=format&fit=crop" alt="Motorcycles" />
+        <div class="category-card__label"><i class="fa-solid fa-motorcycle"></i><span data-i18n="categories.motorcycles">Motorcycles</span></div>
+      </a>
+      <a href="trucks.html" class="category-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=800&auto=format&fit=crop" alt="Trucks" />
+        <div class="category-card__label"><i class="fa-solid fa-truck"></i><span data-i18n="categories.trucks">Trucks</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- FEATURED LISTINGS -->
+<!-- ========================================================= -->
+<section class="section featured-section">
+  <div class="container">
+    <div class="section-heading section-heading--split" data-aos="fade-up">
+      <div>
+        <span class="section-heading__eyebrow" data-i18n="featured.eyebrow">Handpicked For You</span>
+        <h2 data-i18n="featured.title">Featured Listings</h2>
+      </div>
+      <a href="cars.html" class="link-arrow" data-i18n="featured.viewAll">View All <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="swiper featured-swiper" data-aos="fade-up">
+      <div class="swiper-wrapper" id="featuredListingsWrapper">
+        <!-- Vehicle cards injected here by main.js / api.js -->
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- LATEST LISTINGS -->
+<!-- ========================================================= -->
+<section class="section latest-section">
+  <div class="container">
+    <div class="section-heading" data-aos="fade-up">
+      <span class="section-heading__eyebrow" data-i18n="latest.eyebrow">Just Arrived</span>
+      <h2 data-i18n="latest.title">Latest Listings</h2>
+    </div>
+
+    <div class="listings-grid" id="latestListingsGrid">
+      <!-- Vehicle cards injected here by JS -->
+    </div>
+
+    <div class="section-footer-cta" data-aos="fade-up">
+      <a href="cars.html" class="btn btn--outline" data-i18n="latest.viewAll">View All Listings</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- POPULAR BRANDS -->
+<!-- ========================================================= -->
+<section class="section brands-section">
+  <div class="container">
+    <div class="section-heading" data-aos="fade-up">
+      <span class="section-heading__eyebrow" data-i18n="brands.eyebrow">Trusted Manufacturers</span>
+      <h2 data-i18n="brands.title">Popular Brands</h2>
+    </div>
+
+    <div class="brands-grid" id="brandsGrid" data-aos="fade-up">
+      <!-- Brand logos injected by JS; static placeholders shown until loaded -->
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- WHY CHOOSE US -->
+<!-- ========================================================= -->
+<section class="section why-section">
+  <div class="container why-grid">
+    <div class="why-visual" data-aos="fade-right">
+      <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1200&auto=format&fit=crop" alt="Showroom" />
+      <div class="why-visual__badge"><i class="fa-solid fa-shield-halved"></i><span data-i18n="why.badge">100% Verified Sellers</span></div>
+    </div>
+
+    <div class="why-content" data-aos="fade-left">
+      <span class="section-heading__eyebrow" data-i18n="why.eyebrow">Why Moamenoon Cars</span>
+      <h2 data-i18n="why.title">Built On Trust, Driven By Quality</h2>
+
+      <div class="why-item">
+        <div class="why-item__icon"><i class="fa-solid fa-badge-check"></i></div>
+        <div>
+          <h3 data-i18n="why.item1Title">Verified Listings</h3>
+          <p data-i18n="why.item1Text">Every listing is reviewed by our team before it goes live.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-item__icon"><i class="fa-solid fa-comments-dollar"></i></div>
+        <div>
+          <h3 data-i18n="why.item2Title">Direct Negotiation</h3>
+          <p data-i18n="why.item2Text">Message sellers directly — no hidden middlemen or fees.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-item__icon"><i class="fa-solid fa-headset"></i></div>
+        <div>
+          <h3 data-i18n="why.item3Title">24/7 Support</h3>
+          <p data-i18n="why.item3Text">Our team is always on standby to help with your purchase.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- STATISTICS -->
+<!-- ========================================================= -->
+<section class="section stats-section">
+  <div class="stats-section__stripe"></div>
+  <div class="container stats-grid">
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="0">
+      <span class="stat-card__number" data-count="12500">0</span>
+      <span class="stat-card__label" data-i18n="stats.listings">Active Listings</span>
+    </div>
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
+      <span class="stat-card__number" data-count="8300">0</span>
+      <span class="stat-card__label" data-i18n="stats.sellers">Verified Sellers</span>
+    </div>
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+      <span class="stat-card__number" data-count="45000">0</span>
+      <span class="stat-card__label" data-i18n="stats.customers">Happy Customers</span>
+    </div>
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+      <span class="stat-card__number" data-count="20">0</span>
+      <span class="stat-card__label" data-i18n="stats.cities">Cities Covered</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- TESTIMONIALS -->
+<!-- ========================================================= -->
+<section class="section testimonials-section">
+  <div class="container">
+    <div class="section-heading section-heading--center" data-aos="fade-up">
+      <span class="section-heading__eyebrow" data-i18n="testimonials.eyebrow">Client Stories</span>
+      <h2 data-i18n="testimonials.title">What Our Customers Say</h2>
+    </div>
+
+    <div class="swiper testimonials-swiper" data-aos="fade-up">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p data-i18n="testimonials.t1">"Sold my SUV in 3 days. The verification process gave buyers real confidence."</p>
+            <div class="testimonial-card__author">
+              <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format&fit=crop" alt="Ahmed K." />
+              <div><strong>Ahmed K.</strong><span data-i18n="testimonials.t1role">Seller, Cairo</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p data-i18n="testimonials.t2">"Found the exact motorcycle model I wanted with full specs and honest photos."</p>
+            <div class="testimonial-card__author">
+              <img src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?q=80&w=200&auto=format&fit=crop" alt="Sara M." />
+              <div><strong>Sara M.</strong><span data-i18n="testimonials.t2role">Buyer, Giza</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <p data-i18n="testimonials.t3">"Great fleet of trucks for my business. Support team helped close the deal fast."</p>
+            <div class="testimonial-card__author">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" alt="Mostafa R." />
+              <div><strong>Mostafa R.</strong><span data-i18n="testimonials.t3role">Fleet Owner, Alexandria</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- NEWSLETTER -->
+<!-- ========================================================= -->
+<section class="newsletter-section" data-aos="fade-up">
+  <div class="container newsletter-inner glass">
+    <div>
+      <h2 data-i18n="newsletter.title">Get New Listings In Your Inbox</h2>
+      <p data-i18n="newsletter.subtitle">Subscribe to receive weekly deals on cars, motorcycles and trucks.</p>
+    </div>
+    <form class="newsletter-form" id="newsletterForm">
+      <input type="email" placeholder="you@example.com" required data-i18n-placeholder="newsletter.placeholder" />
+      <button type="submit" class="btn btn--primary" data-i18n="newsletter.button">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a href="index.html" class="navbar__logo">
+        <span class="navbar__logo-mark">M</span>
+        <span class="navbar__logo-text">MOAMENOON <em>CARS</em></span>
+      </a>
+      <p data-i18n="footer.tagline">Egypt's trusted marketplace for cars, motorcycles and trucks.</p>
+      <div class="footer__socials">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h4 data-i18n="footer.explore">Explore</h4>
+      <a href="cars.html" data-i18n="nav.cars">Cars</a>
+      <a href="motorcycles.html" data-i18n="nav.motorcycles">Motorcycles</a>
+      <a href="trucks.html" data-i18n="nav.trucks">Trucks</a>
+      <a href="favorites.html" data-i18n="footer.favorites">Favorites</a>
+    </div>
+
+    <div class="footer__col">
+      <h4 data-i18n="footer.company">Company</h4>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="dashboard.html" data-i18n="footer.dashboard">Seller Dashboard</a>
+      <a href="register.html" data-i18n="footer.sell">Sell Your Vehicle</a>
+    </div>
+
+    <div class="footer__col">
+      <h4 data-i18n="footer.contact">Get In Touch</h4>
+      <a href="tel:+201000000000"><i class="fa-solid fa-phone"></i> +20 100 000 0000</a>
+      <a href="mailto:support@moamenooncars.com"><i class="fa-solid fa-envelope"></i> support@moamenooncars.com</a>
+      <span><i class="fa-solid fa-location-dot"></i> Cairo, Egypt</span>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <span>&copy; <span id="footerYear"></span> Moamenoon Cars. <span data-i18n="footer.rights">All rights reserved.</span></span>
+      <div class="footer__legal">
+        <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="#" data-i18n="footer.terms">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================================================= -->
+<!-- SCRIPTS -->
+<!-- ========================================================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.1.4/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.11.5/i18next.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/2.5.2/i18nextHttpBackend.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/8.0.0/i18nextBrowserLanguageDetector.min.js"></script>
+
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
