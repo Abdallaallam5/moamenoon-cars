@@ -511,3 +511,9 @@
   border-radius: var(--radius-sm);
   padding: 12px 14px;
 }
+select,
+select option,
+select optgroup {
+    background-color: #111 !important;
+    color: #fff !important;
+}

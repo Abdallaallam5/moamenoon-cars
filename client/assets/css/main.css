@@ -410,4 +410,94 @@ html[dir="rtl"] .form-field select { background-position: left 14px center; }
 .footer__bottom-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-3); color: var(--color-text-faint); font-size: 0.85rem; }
 .footer__legal { display: flex; gap: var(--space-5); }
 .footer__legal a { color: var(--color-text-faint); }
-.footer__legal a:hover { color: var(--color-text); }
+.footer__legal a:hover { color: var(--color-text); }.gallery-swiper{
+    width:100%;
+    height:500px;
+    border-radius:16px;
+    overflow:hidden;
+}
+
+.gallery-swiper img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.gallery-thumbs{
+    margin-top:15px;
+    height:90px;
+}
+
+.gallery-thumbs .swiper-slide{
+    height:80px;
+    opacity:.45;
+    cursor:pointer;
+    border-radius:10px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.gallery-thumbs .swiper-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.gallery-thumbs .swiper-slide-thumb-active{
+    opacity:1;
+    border:2px solid var(--color-primary);
+}
+/* ==========================
+   Vehicle Details Gallery
+========================== */
+
+.gallery {
+    width: 100%;
+}
+
+.gallery-swiper {
+    width: 100%;
+    height: 500px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #111;
+}
+
+.gallery-swiper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-swiper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* لو عايزها تملأ الإطار */
+    /* object-fit: contain; */ /* استخدم دي لو عايز الصورة كاملة بدون قص */
+    border-radius: 14px;
+}
+
+.gallery-thumbs {
+    margin-top: 15px;
+    height: 90px;
+}
+
+.gallery-thumbs .swiper-slide {
+    width: 90px !important;
+    height: 70px;
+    opacity: .5;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery-thumbs .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+    border: 2px solid var(--color-primary);
+}

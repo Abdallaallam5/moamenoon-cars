@@ -12,26 +12,83 @@
     return new URLSearchParams(window.location.search).get('id');
   }
 
-  function renderGallery(images, title) {
-    const wrapper = document.getElementById('galleryWrapper');
-    const thumbsWrapper = document.getElementById('galleryThumbsWrapper');
-    const list = images && images.length > 0 ? images : [{ url: 'https://via.placeholder.com/1200x750?text=No+Image' }];
+ function renderGallery(images, title) {
+  const wrapper = document.getElementById("galleryWrapper");
+  const thumbsWrapper = document.getElementById("galleryThumbsWrapper");
 
-    wrapper.innerHTML = list.map((img) => `<div class="swiper-slide"><img src="${img.url}" alt="${title}" /></div>`).join('');
-    thumbsWrapper.innerHTML = list.map((img) => `<div class="swiper-slide"><img src="${img.url}" alt="${title} thumbnail" /></div>`).join('');
+  const list = images?.length
+    ? images
+    : [{ url: "https://via.placeholder.com/1200x750?text=No+Image" }];
 
-    if (window.Swiper) {
-      const thumbsSwiper = new Swiper('#galleryThumbs', {
-        slidesPerView: 5,
-        spaceBetween: 10,
-        watchSlidesProgress: true,
-      });
-      new Swiper('.gallery-swiper', {
-        navigation: { nextEl: '.gallery-swiper .swiper-button-next', prevEl: '.gallery-swiper .swiper-button-prev' },
-        thumbs: { swiper: thumbsSwiper },
-      });
+  wrapper.innerHTML = list
+    .map(
+      (img) => `
+        <div class="swiper-slide">
+          <img src="${img.url}" alt="${title}">
+        </div>
+      `
+    )
+    .join("");
+
+  thumbsWrapper.innerHTML = list
+    .map(
+      (img) => `
+        <div class="swiper-slide">
+          <img src="${img.url}" alt="">
+        </div>
+      `
+    )
+    .join("");
+
+  // انتظر لحد ما الـ DOM يحدث
+  requestAnimationFrame(() => {
+
+    if (typeof Swiper === "undefined") {
+      console.error("Swiper not loaded");
+      return;
     }
-  }
+
+    if (window.gallerySwiper) {
+      window.gallerySwiper.destroy(true, true);
+    }
+
+    if (window.galleryThumbsSwiper) {
+      window.galleryThumbsSwiper.destroy(true, true);
+    }
+
+    // الصور الصغيرة
+    window.galleryThumbsSwiper = new Swiper(".gallery-thumbs", {
+      slidesPerView: 4,
+      spaceBetween: 10,
+      freeMode: true,
+      watchSlidesProgress: true,
+      watchSlidesVisibility: true,
+      slideToClickedSlide: true,
+    });
+
+    // الصورة الكبيرة
+    window.gallerySwiper = new Swiper(".gallery-swiper", {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      loop: false,
+
+      navigation: {
+        nextEl: ".gallery-swiper .swiper-button-next",
+        prevEl: ".gallery-swiper .swiper-button-prev",
+      },
+
+      thumbs: {
+        swiper: window.galleryThumbsSwiper,
+      },
+    });
+
+    // الضغط على الصورة الصغيرة يغير الكبيرة
+    window.galleryThumbsSwiper.on("tap", function () {
+      window.gallerySwiper.slideTo(this.clickedIndex);
+    });
+
+  });
+}
 
   function renderSpecs(vehicle) {
     const specs = [

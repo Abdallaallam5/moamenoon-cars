@@ -63,7 +63,7 @@
 /* ============================================================
    768px — mobile
    ============================================================ */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   :root { --navbar-height: 72px; }
 
   .hero { min-height: 100vh; }
@@ -95,7 +95,7 @@
   .dash-main { padding: var(--space-4); }
   .dash-stats-grid { grid-template-columns: 1fr; }
   .details-title-block { flex-direction: column; align-items: flex-start; }
-}
+} */
 
 /* ============================================================
    480px — small mobile
@@ -128,3 +128,246 @@
   .navbar__burger.is-open span:nth-child(2) { opacity: 0; }
   .navbar__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 }
+/* ================================
+   MOBILE HERO FIX
+================================ */
+@media (max-width: 768px) {
+
+  .hero {
+    min-height: auto;
+    padding-top: 20px;
+  }
+
+  .hero__content {
+    padding-block: var(--space-5);
+  }
+
+  .hero__title {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  .hero__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .search-box {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .search-box__tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .search-tab {
+    justify-content: center;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .search-tab i {
+    font-size: 14px;
+  }
+
+  .search-box__form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-field input,
+  .form-field select {
+    width: 100%;
+  }
+
+  .search-box__submit {
+    width: 100%;
+  }
+
+  .advanced-search {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar__logo-text {
+    font-size: 0.9rem;
+  }
+
+  .navbar__actions {
+    gap: 8px;
+  }
+
+  .lang-switch {
+    padding: 8px 12px;
+  }
+  .search-box,
+.glass {
+    overflow: hidden;
+    
+}
+
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+}
+/* =========================================
+   VEHICLE DETAILS RESPONSIVE FIX
+========================================= */
+@media (max-width:768px){
+
+  .details-layout{
+      grid-template-columns:1fr;
+      gap:20px;
+      padding-block:20px;
+  }
+
+  .gallery-swiper{
+      height:260px !important;
+      border-radius:14px;
+  }
+
+  .gallery-thumbs{
+      height:70px;
+      margin-top:10px;
+  }
+
+  .gallery-thumbs .swiper-slide{
+      width:70px !important;
+      height:60px;
+  }
+
+  .details-title-block{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:12px;
+      margin-top:20px;
+  }
+
+  .details-title-block h1{
+      font-size:1.45rem;
+      line-height:1.35;
+      word-break:break-word;
+  }
+
+  .details-price{
+      font-size:2rem;
+  }
+
+  .details-meta{
+      font-size:.85rem;
+      line-height:1.6;
+  }
+
+  .details-card{
+      padding:18px;
+      margin-top:18px;
+  }
+
+  .specs-grid{
+      grid-template-columns:1fr;
+  }
+
+  .spec-item{
+      padding:14px;
+      font-size:.9rem;
+      flex-wrap:wrap;
+      gap:8px;
+  }
+
+  .seller-card{
+      padding:18px;
+  }
+
+  .seller-card__header{
+      align-items:center;
+  }
+
+  .seller-card__actions{
+      grid-template-columns:1fr;
+      gap:12px;
+  }
+
+  .seller-card__actions .btn{
+      width:100%;
+  }
+
+  .seller-card__form textarea{
+      min-height:120px;
+  }
+
+  .details-sidebar{
+      order:2;
+  }
+
+  .details-main{
+      order:1;
+  }
+
+  .favorite-toggle{
+      width:42px;
+      height:42px;
+      top:12px;
+      right:12px;
+  }
+
+  .map-placeholder{
+      min-height:220px;
+  }
+
+  #similarVehiclesGrid{
+      grid-template-columns:1fr;
+  }
+
+  .breadcrumb{
+      overflow-x:auto;
+      white-space:nowrap;
+      padding-bottom:8px;
+  }
+
+}
+@media (max-width:768px){
+
+.spec-item{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.spec-item span:last-child{
+    text-align:left;
+}
+
+html[dir="rtl"] .spec-item{
+    align-items:flex-end;
+}
+
+html[dir="rtl"] .spec-item span:last-child{
+    text-align:right;
+}
+
+}
+@media (max-width:768px){
+
+.container,
+.details-layout,
+.details-main,
+.details-sidebar,
+.details-card,
+.gallery,
+.gallery-swiper{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+}
+
+.details-main{
+    overflow:hidden;
+}
+
+}
+

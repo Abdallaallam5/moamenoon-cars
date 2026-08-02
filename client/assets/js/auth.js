@@ -77,10 +77,24 @@
       errorBox.style.display = 'none';
       submitBtn.disabled = true;
 
+      let phone = document.getElementById("registerPhone").value.trim();
+
+// إزالة أي مسافات أو شرطات
+phone = phone.replace(/\D/g, "");
+
+// لو المستخدم كتب الرقم المصري 01xxxxxxxxx
+if (phone.startsWith("0")) {
+  phone = "20" + phone.substring(1);
+}
+
+// لو كتب +20
+if (phone.startsWith("20")) {
+  phone = phone;
+}
       const payload = {
         name: document.getElementById('registerName').value.trim(),
         email: document.getElementById('registerEmail').value.trim(),
-        phone: document.getElementById('registerPhone').value.trim(),
+        phone: phone,
         password: document.getElementById('registerPassword').value,
       };
 
