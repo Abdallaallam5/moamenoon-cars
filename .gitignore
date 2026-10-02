@@ -3,6 +3,8 @@ node_modules/
 data/
 *.log
 *.zip
+# old version of the site, kept only on the developer's machine
+client/
 # local editor / tool settings
 .claude/
 *.code-workspace

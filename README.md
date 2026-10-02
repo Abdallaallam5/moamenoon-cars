@@ -1,67 +1,109 @@
 # Moamenoon Cars
 
-موقع معرض سيارات: صفحة رئيسية، كتالوج السيارات، حسابات (مستخدم / تاجر)، لوحة تاجر، لوحة أدمن، وطلبات عبر واتساب.
-Node.js + Express + SQLite (المدمجة في Node) — بدون قاعدة بيانات خارجية.
+Car showroom website for **Moamenoon Cars**: imported cars, accessible (adapted) cars, and trucks & heavy equipment.
+Visitors browse the catalogue and contact sellers on WhatsApp; approved dealers list their own cars; the showroom owner reviews everything from an admin panel.
 
-## التشغيل على اللاب (VS Code)
+> **عربي:** دليل التشغيل على اللاب تحت في قسم [التشغيل السريع](#التشغيل-السريع)، ودليل الرفع على دومين وسيرفر خطوة بخطوة في [`deploy/DEPLOY-AR.md`](deploy/DEPLOY-AR.md).
 
-المطلوب: **Node.js 22.13 أو أحدث** (تأكد بـ `node -v`) من https://nodejs.org
+## Features
 
-1. افتح المجلد في VS Code: **File ← Open Folder**.
-2. افتح الـ Terminal: **Terminal ← New Terminal**.
-3. ثبّت المكتبات (مرة واحدة):
-   ```bash
-   npm install
-   ```
-4. جهّز الإعدادات:
-   ```bash
-   copy .env.example .env
-   ```
-   افتح ملف `.env` واكتب أي باسوورد في `ADMIN_PASSWORD=` (8 حروف على الأقل).
-5. شغّل الموقع:
-   ```bash
-   npm start
-   ```
-6. افتح http://localhost:3000 (الموقع بيبدأ فاضي، والسيارات بيرفعها الأدمن والتجار من الموقع نفسه)
+- **Arabic / English** with full RTL/LTR switching, black & red theme, mobile first
+- **Request forms** (imported / accessible / trucks) that open a ready-made WhatsApp message to the showroom
+- **Car catalogue** with category, brand, condition and price filters, search, photo gallery and favourites
+- **Per-listing WhatsApp:** every dealer car has its own contact number; showroom cars use the showroom number
+- **Accounts:** regular users (instant) and dealers (need admin approval)
+- **Review workflow:** every new or edited dealer car is published only after the admin approves it (rejections include a reason)
+- **Admin panel:** dealer requests, car reviews, all cars (hide / sold / featured), users (suspend / delete)
+- **Email notifications** (Gmail SMTP) for dealer requests, approvals and rejections
+- **Photo pipeline:** re-encoded to WebP, 640×480 thumbnails for cards, EXIF/GPS stripped, fake or corrupt files rejected
 
-لإيقاف الموقع: `Ctrl + C` في الـ Terminal.
+## Tech stack
 
-### الحسابات
-- **الأدمن:** `moamnoon.co@gmail.com` + الباسوورد اللي كتبته في `.env` ← يدخل من `/auth.html` ويروح تلقائيًا للوحة الإدارة.
-- **إضافة أدمن (أو تغيير باسووده) مباشرة في الداتا بيز:**
-  ```bash
-  npm run admin
-  ```
-  بيسألك عن الإيميل والباسوورد (بتكتبه في الـ Terminal وبيتخزن مشفّر). لتحديد الإيميل: `npm run admin -- --email=someone@example.com`.
-  لو PowerShell منع `npm` اكتب `npm.cmd` بدلها.
-- تسجيل تاجر جديد من `/auth.html?mode=signup` بيظهر في لوحة الأدمن كطلب ينتظر الموافقة.
+| Layer | Choice |
+|---|---|
+| Runtime | Node.js ≥ 22.13 |
+| Server | Express 5 |
+| Database | SQLite via the built-in `node:sqlite` (one file, no external DB server) |
+| Images | sharp |
+| Email | nodemailer |
+| Front end | Plain HTML / CSS / JavaScript, no build step |
+| Production | nginx + PM2 on an Ubuntu VPS, Let's Encrypt HTTPS, optional Cloudflare |
 
-### الإيميلات
-من غير `SMTP_PASS` الإيميلات **بتظهر في الـ Terminal** بدل ما تتبعت (مناسب للتجربة على اللاب، لكن على السيرفر الحقيقي لازم تتظبط).
-لتفعيلها فعليًا: اعمل App Password لحساب Gmail (Security ← 2-Step Verification ← App passwords) وحطه في `SMTP_PASS`.
+## Project structure
 
-### أشياء تعدلها
-- **رقم واتساب المعرض وروابط الفيس/الإنستا:** `public/js/config.js`.
-- **اسم المعرض واللوجو:** `public/js/i18n.js` و`public/img/`.
+```
+├── server.js              # entry point: security headers, static files, API, graceful shutdown
+├── server/
+│   ├── config.js          # settings from .env
+│   ├── db.js              # schema, indexes, migrations
+│   ├── auth.js            # password hashing, signed session cookie, role guards
+│   ├── validate.js        # input validation
+│   ├── upload.js          # photo processing and upload queue
+│   ├── carsService.js     # car queries and writes
+│   ├── cache.js           # short in-memory cache for public lists
+│   ├── mail.js            # email templates
+│   ├── seed.js            # creates the admin account
+│   └── routes/            # auth, cars, dealer cars, admin
+├── public/                # the website (HTML, CSS, JS, images)
+├── scripts/               # admin account, backup, load test
+└── deploy/                # VPS setup, nginx, PM2, backups, update + Arabic deployment guide
+```
 
-### البيانات
-كل الحسابات والسيارات والصور في مجلد `data/` (بيتعمل تلقائيًا). لتصفير الموقع: أوقفه وامسح مجلد `data`.
+Runtime data (database and uploaded photos) lives in `data/`, which is **not** part of the repository.
 
-## الرفع على استضافة ودومين
+## Getting started
 
-**الدليل الكامل بالخطوات والتكلفة والأرقام: [`deploy/DEPLOY-AR.md`](deploy/DEPLOY-AR.md).**
+```bash
+npm install
+cp .env.example .env      # Windows: copy .env.example .env
+# set ADMIN_PASSWORD in .env (8+ characters)
+npm start
+```
 
-باختصار: الموقع محتاج سيرفر **Node.js** (22.13 أو أحدث) مع **تخزين دائم** لمجلد `data/` (قاعدة البيانات والصور)،
-ولا يشتغل على استضافات الملفات الثابتة (Netlify / GitHub Pages). الأنسب: VPS + Cloudflare، وفي `deploy/` سكربتات جاهزة
-(إعداد السيرفر، nginx، PM2، نسخ احتياطي يومي، تحديث).
+Open http://localhost:3000 and log in at `/auth.html` with `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
+Without `SMTP_PASS`, emails are printed to the terminal instead of being sent.
 
-أوامر مفيدة: `npm run backup` (نسخة احتياطية من قاعدة البيانات)، `npm run loadtest` (اختبار حمل).
+### Scripts
 
-## سير العمل
+| Command | What it does |
+|---|---|
+| `npm start` | Start the server |
+| `npm run dev` | Start with auto-restart on file changes |
+| `npm run admin` | Create an admin or reset its password (asks in the terminal) |
+| `npm run backup` | Consistent database backup, safe while the site is running |
+| `npm run loadtest -- <url> [connections] [seconds]` | Simple load test |
 
-1. الزائر ينشئ حساب: **مستخدم عادي** (فوري) أو **تاجر** (ينتظر موافقة الأدمن).
-2. طلب تاجر جديد ← إيميل للأدمن ← الأدمن يقبل/يرفض من `/admin.html` ← إيميل للتاجر.
-3. التاجر المقبول يرفع سيارات (صور + بيانات + **رقم واتساب للتواصل** لكل سيارة) من `/dealer.html` ← تبقى **قيد المراجعة**.
-   زرار الواتس في كارت السيارة وفي تفاصيلها بيفتح واتساب على رقم التاجر ده. السيارات اللي ملهاش رقم (سيارات المعرض) بتروح لرقم المعرض في `public/js/config.js`.
-4. الأدمن يراجع ويقبل (تظهر على الموقع) أو يرفض بسبب (يصل التاجر بالإيميل). أي تعديل من التاجر يرجع للمراجعة.
-5. سيارات المعرض نفسه (من الأدمن) تُنشر فورًا.
+### Configuration
+
+All settings are environment variables, documented in [`.env.example`](.env.example).
+The showroom WhatsApp number and social links are in [`public/js/config.js`](public/js/config.js).
+
+## Deployment
+
+Needs a server that runs Node.js **and keeps files on disk** (a VPS). Static or serverless hosting (Netlify, GitHub Pages, Vercel) cannot keep the database and photos.
+
+`deploy/setup-server.sh` prepares a fresh Ubuntu 24.04 server in one command: Node.js, nginx, PM2 (cluster mode), firewall, swap, HTTPS and daily backups.
+Full step-by-step guide (Arabic): [`deploy/DEPLOY-AR.md`](deploy/DEPLOY-AR.md).
+
+---
+
+## التشغيل السريع
+
+المطلوب: **Node.js 22.13 أو أحدث** (`node -v`).
+
+1. افتح المجلد في VS Code، وافتح الـ Terminal.
+2. `npm install`
+3. `copy .env.example .env` ثم افتح `.env` واكتب باسوورد في `ADMIN_PASSWORD=`.
+4. `npm start` وافتح http://localhost:3000
+5. ادخل من `/auth.html` بإيميل الأدمن والباسوورد.
+
+- لو PowerShell منع `npm`، اكتب `npm.cmd` بدلها.
+- **لتصفير الموقع:** أوقفه وامسح مجلد `data`.
+- **رقم واتساب المعرض وروابط الفيس والإنستا:** `public/js/config.js`.
+
+### سير العمل
+1. الزائر يسجّل **مستخدم عادي** (فوري) أو **تاجر** (ينتظر موافقة الأدمن).
+2. طلب التاجر بيوصل الأدمن بالإيميل، والأدمن يقبل أو يرفض من `/admin.html`، والتاجر بيوصله إيميل بالقرار.
+3. التاجر المقبول يرفع سيارات (صور + بيانات + رقم واتساب) من `/dealer.html`، وتبقى **قيد المراجعة**.
+4. الأدمن يقبل (تظهر على الموقع) أو يرفض بسبب. أي تعديل من التاجر يرجع للمراجعة.
+5. سيارات المعرض نفسه (من الأدمن) بتتنشر فورًا.
