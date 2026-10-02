@@ -1,0 +1,26 @@
+{
+  "name": "moamenoon-showroom",
+  "version": "2.0.0",
+  "description": "Moamenoon Cars - showroom website with dealer accounts, admin review and WhatsApp requests",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server.js",
+    "admin": "node --disable-warning=ExperimentalWarning scripts/create-admin.js",
+    "backup": "node --disable-warning=ExperimentalWarning scripts/backup.js",
+    "loadtest": "node scripts/loadtest.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "multer": "^2.0.0",
+    "nodemailer": "^7.0.0",
+    "sharp": "^0.34.5"
+  }
+}

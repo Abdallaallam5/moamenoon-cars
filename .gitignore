@@ -1,0 +1,8 @@
+node_modules/
+.env
+data/
+*.log
+*.zip
+# local editor / tool settings
+.claude/
+*.code-workspace

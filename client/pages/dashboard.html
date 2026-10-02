@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard | Moamenoon Cars</title>
+
+<link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+<link rel="stylesheet" href="../assets/css/variables.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/components.css" />
+<link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body class="page-dashboard">
+
+<div class="dash-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <a href="index.html" class="navbar__logo dash-sidebar__logo">
+      <span class="navbar__logo-mark">M</span>
+      <span class="navbar__logo-text">MOAMENOON <em>CARS</em></span>
+    </a>
+
+    <nav class="dash-nav">
+      <button class="dash-nav__item is-active" data-target="panel-overview"><i class="fa-solid fa-gauge-high"></i> <span data-i18n="dashboard.overview">Overview</span></button>
+      <button class="dash-nav__item" data-target="panel-analytics"><i class="fa-solid fa-chart-line"></i> <span data-i18n="dashboard.analytics">Analytics</span></button>
+      <button class="dash-nav__item" data-target="panel-vehicles"><i class="fa-solid fa-car"></i> <span data-i18n="dashboard.vehicles">Vehicles</span></button>
+      <button class="dash-nav__item" data-target="panel-add-vehicle"><i class="fa-solid fa-plus"></i> <span data-i18n="dashboard.addVehicle">Add Vehicle</span></button>
+      <button class="dash-nav__item" data-target="panel-brands"><i class="fa-solid fa-tag"></i> <span data-i18n="dashboard.brands">Brands</span></button>
+      <button class="dash-nav__item" data-target="panel-categories"><i class="fa-solid fa-layer-group"></i> <span data-i18n="dashboard.categories">Categories</span></button>
+      <button class="dash-nav__item" data-target="panel-messages"><i class="fa-solid fa-envelope"></i> <span data-i18n="dashboard.messages">Messages</span></button>
+      <button class="dash-nav__item" data-target="panel-reviews"><i class="fa-solid fa-star"></i> <span data-i18n="dashboard.reviews">Reviews</span></button>
+      <button class="dash-nav__item" data-target="panel-users"><i class="fa-solid fa-users"></i> <span data-i18n="dashboard.users">Users</span></button>
+    </nav>
+
+    <a href="index.html" class="dash-sidebar__back"><i class="fa-solid fa-arrow-left"></i> <span data-i18n="dashboard.backToSite">Back to site</span></a>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dash-main">
+    <header class="dash-topbar">
+      <button class="dash-burger" id="dashBurger"><i class="fa-solid fa-bars"></i></button>
+      <h1 id="dashPanelTitle" data-i18n="dashboard.overview">Overview</h1>
+      <div class="dash-topbar__actions">
+        <button class="lang-switch" id="langSwitch"><i class="fa-solid fa-globe"></i><span id="langSwitchLabel">العربية</span></button>
+        <img id="dashAvatar" src="https://ui-avatars.com/api/?name=Admin&background=C1121F&color=fff" alt="Admin" />
+      </div>
+    </header>
+
+    <!-- OVERVIEW PANEL -->
+    <section class="dash-panel is-active" id="panel-overview">
+      <div class="dash-stats-grid">
+        <div class="dash-stat-card">
+          <i class="fa-solid fa-users"></i>
+          <div><span id="statTotalUsers">0</span><label data-i18n="dashboard.totalUsers">Total Users</label></div>
+        </div>
+        <div class="dash-stat-card">
+          <i class="fa-solid fa-car"></i>
+          <div><span id="statTotalVehicles">0</span><label data-i18n="dashboard.totalVehicles">Total Vehicles</label></div>
+        </div>
+        <div class="dash-stat-card dash-stat-card--warning">
+          <i class="fa-solid fa-hourglass-half"></i>
+          <div><span id="statPendingVehicles">0</span><label data-i18n="dashboard.pendingApproval">Pending Approval</label></div>
+        </div>
+        <div class="dash-stat-card dash-stat-card--success">
+          <i class="fa-solid fa-circle-check"></i>
+          <div><span id="statApprovedVehicles">0</span><label data-i18n="dashboard.approvedListings">Approved Listings</label></div>
+        </div>
+        <div class="dash-stat-card">
+          <i class="fa-solid fa-envelope"></i>
+          <div><span id="statTotalMessages">0</span><label data-i18n="dashboard.totalMessages">Total Messages</label></div>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <h3 data-i18n="dashboard.pendingReview">Listings Pending Review</h3>
+        <div class="dash-table" id="pendingReviewTable"><!-- injected by JS --></div>
+      </div>
+    </section>
+
+    <!-- ANALYTICS PANEL -->
+    <section class="dash-panel" id="panel-analytics">
+
+      <div class="dash-stats-grid dash-stats-grid--4">
+        <div class="dash-stat-card">
+          <i class="fa-solid fa-eye"></i>
+          <div><span id="statTotalViews">0</span><label data-i18n="dashboard.totalViews">Total Views</label></div>
+        </div>
+        <div class="dash-stat-card">
+          <i class="fa-solid fa-tags"></i>
+          <div><span id="statTotalBrands">0</span><label data-i18n="dashboard.totalBrands">Brands</label></div>
+        </div>
+        <div class="dash-stat-card">
+          <i class="fa-solid fa-layer-group"></i>
+          <div><span id="statTotalCategories">0</span><label data-i18n="dashboard.totalCategories">Categories</label></div>
+        </div>
+        <div class="dash-stat-card">
+          <i class="fa-solid fa-star"></i>
+          <div><span id="statTotalReviews">0</span><label data-i18n="dashboard.totalReviews">Reviews</label></div>
+        </div>
+      </div>
+
+      <div class="dash-charts-grid">
+        <div class="dash-card dash-chart-card dash-chart-card--wide">
+          <h3 data-i18n="dashboard.listingsTrend">New Listings (Last 12 Months)</h3>
+          <div class="dash-chart-wrap"><canvas id="chartListingsTrend"></canvas></div>
+        </div>
+        <div class="dash-card dash-chart-card dash-chart-card--wide">
+          <h3 data-i18n="dashboard.usersTrend">New Users (Last 12 Months)</h3>
+          <div class="dash-chart-wrap"><canvas id="chartUsersTrend"></canvas></div>
+        </div>
+        <div class="dash-card dash-chart-card">
+          <h3 data-i18n="dashboard.byStatus">Listings by Status</h3>
+          <div class="dash-chart-wrap"><canvas id="chartByStatus"></canvas></div>
+        </div>
+        <div class="dash-card dash-chart-card">
+          <h3 data-i18n="dashboard.byType">Listings by Type</h3>
+          <div class="dash-chart-wrap"><canvas id="chartByType"></canvas></div>
+        </div>
+        <div class="dash-card dash-chart-card">
+          <h3 data-i18n="dashboard.topBrands">Top Brands</h3>
+          <div class="dash-chart-wrap"><canvas id="chartTopBrands"></canvas></div>
+        </div>
+        <div class="dash-card dash-chart-card">
+          <h3 data-i18n="dashboard.topCities">Top Cities</h3>
+          <div class="dash-chart-wrap"><canvas id="chartTopCities"></canvas></div>
+        </div>
+      </div>
+
+      <div class="dash-charts-grid">
+        <div class="dash-card">
+          <h3 data-i18n="dashboard.avgPriceByType">Average Price by Type</h3>
+          <div class="dash-table" id="priceStatsTable"><!-- injected by JS --></div>
+        </div>
+        <div class="dash-card">
+          <h3 data-i18n="dashboard.mostViewed">Most Viewed Listings</h3>
+          <div class="dash-table" id="mostViewedTable"><!-- injected by JS --></div>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <h3 data-i18n="dashboard.recentActivity">Recent Activity</h3>
+        <div class="dash-activity-feed" id="recentActivityFeed"><!-- injected by JS --></div>
+      </div>
+    </section>
+
+    <!-- VEHICLES PANEL -->
+    <section class="dash-panel" id="panel-vehicles">
+      <div class="dash-panel__toolbar">
+        <input type="text" id="vehicleSearchInput" placeholder="Search vehicles..." />
+        <select id="vehicleStatusFilter">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+          <option value="sold">Sold</option>
+        </select>
+      </div>
+      <div class="dash-card">
+        <div class="dash-table" id="allVehiclesTable"><!-- injected by JS --></div>
+      </div>
+    </section>
+
+    <!-- ADD/EDIT VEHICLE PANEL -->
+    <section class="dash-panel" id="panel-add-vehicle">
+      <div class="dash-card">
+        <h3 id="vehicleFormTitle" data-i18n="dashboard.addVehicle">Add Vehicle</h3>
+        <form id="vehicleForm" class="dash-form">
+          <input type="hidden" id="vehicleEditId" />
+
+          <div class="form-field">
+            <label data-i18n="dashboard.vehicleType">Vehicle Type</label>
+            <div class="type-toggle" id="vTypeToggle">
+              <button type="button" class="type-toggle__btn is-active" data-type="car"><i class="fa-solid fa-car-side"></i> <span data-i18n="nav.cars">Cars</span></button>
+              <button type="button" class="type-toggle__btn" data-type="motorcycle"><i class="fa-solid fa-motorcycle"></i> <span data-i18n="nav.motorcycles">Motorcycles</span></button>
+              <button type="button" class="type-toggle__btn" data-type="truck"><i class="fa-solid fa-truck"></i> <span data-i18n="nav.trucks">Trucks</span></button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field"><label data-i18n="details.descriptionTitle">Title</label><input type="text" id="vTitle" required /></div>
+            <div class="form-field"><label data-i18n="search.model">Model</label><input type="text" id="vModel" required /></div>
+          </div>
+          <div class="form-field"><label>Description</label><textarea id="vDescription" rows="4" required></textarea></div>
+          <div class="form-row">
+            <div class="form-field"><label data-i18n="filters.category">Category</label><select id="vCategory" required></select></div>
+            <div class="form-field"><label data-i18n="search.brand">Brand</label><select id="vBrand" required></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label data-i18n="search.year">Year</label><input type="number" id="vYear" required /></div>
+            <div class="form-field"><label data-i18n="search.mileage">Mileage (km)</label><input type="number" id="vMileage" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label data-i18n="search.fuel">Fuel</label>
+              <select id="vFuel" required>
+                <option value="petrol">Petrol</option><option value="diesel">Diesel</option>
+                <option value="electric">Electric</option><option value="hybrid">Hybrid</option><option value="lpg">LPG</option>
+              </select>
+            </div>
+            <div class="form-field"><label data-i18n="search.transmission">Transmission</label>
+              <select id="vTransmission" required>
+                <option value="manual">Manual</option><option value="automatic">Automatic</option><option value="semi-automatic">Semi-Automatic</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Engine</label><input type="text" id="vEngine" /></div>
+            <div class="form-field"><label>Horsepower</label><input type="number" id="vHorsepower" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Color</label><input type="text" id="vColor" /></div>
+            <div class="form-field"><label data-i18n="search.condition">Condition</label>
+              <select id="vCondition" required>
+                <option value="new">New</option><option value="used">Used</option><option value="certified-pre-owned">Certified Pre-Owned</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Price</label><input type="number" id="vPrice" required /></div>
+            <div class="form-field"><label>Currency</label>
+              <select id="vCurrency"><option>USD</option><option>EGP</option><option>EUR</option><option>SAR</option><option>AED</option></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label data-i18n="filters.location">City</label><input type="text" id="vCity" required /></div>
+            <div class="form-field"><label>Country</label><input type="text" id="vCountry" required /></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="dashboard.uploadImages">Upload Images</label>
+            <input type="file" id="vImages" multiple accept="image/*" />
+            <p class="form-hint" data-i18n="dashboard.firstImageHint">The first image will be used as the main (cover) photo.</p>
+            <div class="image-preview-grid" id="vImagesPreview"><!-- injected by JS --></div>
+          </div>
+          <button type="submit" class="btn btn--primary" id="vehicleFormSubmit" data-i18n="dashboard.saveVehicle">Save Vehicle</button>
+          <button type="button" class="btn btn--ghost" id="vehicleFormCancel" data-i18n="dashboard.cancelEdit">Cancel</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- BRANDS PANEL -->
+    <section class="dash-panel" id="panel-brands">
+      <div class="dash-card">
+        <div class="dash-panel__toolbar">
+          <h3 data-i18n="dashboard.brands">Brands</h3>
+          <button class="btn btn--primary btn--sm" id="addBrandBtn"><i class="fa-solid fa-plus"></i> <span data-i18n="dashboard.addBrand">Add Brand</span></button>
+        </div>
+        <div class="dash-table" id="brandsTable"><!-- injected by JS --></div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES PANEL -->
+    <section class="dash-panel" id="panel-categories">
+      <div class="dash-card">
+        <div class="dash-panel__toolbar">
+          <h3 data-i18n="dashboard.categories">Categories</h3>
+          <button class="btn btn--primary btn--sm" id="addCategoryBtn"><i class="fa-solid fa-plus"></i> <span data-i18n="dashboard.addCategory">Add Category</span></button>
+        </div>
+        <div class="dash-table" id="categoriesTable"><!-- injected by JS --></div>
+      </div>
+    </section>
+
+    <!-- MESSAGES PANEL -->
+    <section class="dash-panel" id="panel-messages">
+      <div class="dash-card">
+        <div class="dash-panel__toolbar">
+          <h3 data-i18n="dashboard.messages">Messages</h3>
+          <input type="text" id="messageSearchInput" placeholder="Search messages..." />
+        </div>
+        <div class="dash-table" id="messagesTable"><!-- injected by JS --></div>
+      </div>
+    </section>
+
+    <!-- REVIEWS PANEL -->
+    <section class="dash-panel" id="panel-reviews">
+      <div class="dash-card">
+        <h3 data-i18n="dashboard.reviews">Reviews</h3>
+        <div class="dash-table" id="reviewsTable"><!-- injected by JS --></div>
+      </div>
+    </section>
+
+    <!-- USERS PANEL -->
+    <section class="dash-panel" id="panel-users">
+      <div class="dash-card">
+        <h3 data-i18n="dashboard.users">Users</h3>
+        <div class="dash-table" id="usersTable"><!-- injected by JS --></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.11.5/i18next.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/2.5.2/i18nextHttpBackend.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/8.0.0/i18nextBrowserLanguageDetector.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

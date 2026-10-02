@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تسجيل الدخول | مؤمنون للسيارات</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#070707">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="page" data-title="auth_page_title">
+  <div class="bg-fx" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="grid"></span></div>
+
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a class="brand" href="index.html" aria-label="MOAMENOON">
+        <img class="logo-img" src="img/logo-mark.png" alt="" width="260" height="203">
+        <span class="brand-name" data-i18n="brand"></span>
+      </a>
+      <div class="nav-actions">
+        <button class="lang" id="langBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+          <span class="lbl" data-i18n="lang_label">EN</span>
+        </button>
+        <a class="btn sm" id="navWa" href="#" target="_blank" rel="noopener">
+          <svg class="wa-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5z"/><path d="M8.6 8.4c.3 2.5 3.3 5.5 6 5.9l1.4-1.4-2.1-1-1 .8c-.9-.4-1.9-1.4-2.3-2.3l.8-1-1-2.1z"/></svg>
+          <span data-i18n="nav_wa"></span>
+        </a>
+        <div class="nav-auth" id="navAuth"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="auth-wrap">
+        <div class="auth-card">
+          <div class="tabs" role="tablist">
+            <button type="button" role="tab" id="tabLogin" data-mode="login" data-i18n="tab_login"></button>
+            <button type="button" role="tab" id="tabSignup" data-mode="signup" data-i18n="tab_signup"></button>
+          </div>
+
+          <!-- LOGIN -->
+          <section id="loginBox">
+            <h1 data-i18n="auth_login_title"></h1>
+            <p class="sub" data-i18n="auth_login_sub"></p>
+            <form id="loginForm" class="stack" novalidate>
+              <div class="f"><label for="lEmail" data-i18n="f_email"></label><input id="lEmail" name="email" type="email" autocomplete="username" dir="ltr" required></div>
+              <div class="f"><label for="lPass" data-i18n="f_password"></label>
+                <div class="pw"><input id="lPass" name="password" type="password" autocomplete="current-password" dir="ltr" required><button type="button" data-pw="lPass" data-i18n="show"></button></div>
+              </div>
+              <div class="form-msg" id="lErr" role="alert" hidden></div>
+              <button class="btn block" type="submit" data-i18n="btn_login"></button>
+            </form>
+          </section>
+
+          <!-- SIGN UP -->
+          <section id="signupBox" hidden>
+            <h1 data-i18n="auth_signup_title"></h1>
+            <p class="sub" data-i18n="auth_signup_sub"></p>
+            <form id="signupForm" class="stack" novalidate>
+              <div class="f"><span class="lab" data-i18n="type_label"></span>
+                <div class="types">
+                  <label class="type"><input type="radio" name="type" value="user" checked><span><b data-i18n="type_user_t"></b><small data-i18n="type_user_d"></small></span></label>
+                  <label class="type"><input type="radio" name="type" value="dealer"><span><b data-i18n="type_dealer_t"></b><small data-i18n="type_dealer_d"></small></span></label>
+                </div>
+              </div>
+              <div class="f"><label for="sName" data-i18n="f_name"></label><input id="sName" name="name" type="text" autocomplete="name" maxlength="80" required></div>
+              <div class="f"><label for="sEmail" data-i18n="f_email"></label><input id="sEmail" name="email" type="email" autocomplete="email" dir="ltr" required></div>
+              <div class="f"><label for="sPhone" data-i18n="f_phone"></label><input id="sPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="01xxxxxxxxx" required></div>
+              <div class="f" id="bizRow" hidden><label for="sBiz" data-i18n="f_business"></label><input id="sBiz" name="business" type="text" maxlength="100"></div>
+              <div class="f"><label for="sPass" data-i18n="f_password"></label>
+                <div class="pw"><input id="sPass" name="password" type="password" autocomplete="new-password" dir="ltr" minlength="8" required><button type="button" data-pw="sPass" data-i18n="show"></button></div>
+                <span class="field-hint" data-i18n="f_password_hint"></span>
+              </div>
+              <div class="form-msg" id="sErr" role="alert" hidden></div>
+              <button class="btn block" type="submit" data-i18n="btn_signup"></button>
+            </form>
+          </section>
+
+          <!-- DEALER REQUEST SENT -->
+          <section id="waitBox" class="wait" hidden>
+            <svg class="check" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle pathLength="1" cx="40" cy="40" r="34"/><path pathLength="1" d="M25 41l10 10 20-22"/></svg>
+            <h2 data-i18n="wait_title"></h2>
+            <p data-i18n="wait_text"></p>
+            <a class="btn" href="dealer.html" data-i18n="wait_btn"></a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/i18n-app.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

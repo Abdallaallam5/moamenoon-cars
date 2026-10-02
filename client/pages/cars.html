@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cars for Sale | Moamenoon Cars</title>
+<meta name="description" content="Browse thousands of verified cars for sale on Moamenoon Cars." />
+
+<link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
+
+<link rel="stylesheet" href="../assets/css/variables.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/components.css" />
+<link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body class="page-listing" data-vehicle-type="car">
+
+<!-- ========================================================= -->
+<!-- NAVBAR (shared markup across all pages) -->
+<!-- ========================================================= -->
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <span class="navbar__logo-mark">M</span>
+      <span class="navbar__logo-text">MOAMENOON <em>CARS</em></span>
+    </a>
+    <nav class="navbar__nav" id="navbarNav">
+      <a href="index.html" class="navbar__link" data-i18n="nav.home">Home</a>
+      <a href="cars.html" class="navbar__link is-active" data-i18n="nav.cars">Cars</a>
+      <a href="motorcycles.html" class="navbar__link" data-i18n="nav.motorcycles">Motorcycles</a>
+      <a href="trucks.html" class="navbar__link" data-i18n="nav.trucks">Trucks</a>
+      <a href="about.html" class="navbar__link" data-i18n="nav.about">About</a>
+      <a href="contact.html" class="navbar__link" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="lang-switch" id="langSwitch" aria-label="Switch language">
+        <i class="fa-solid fa-globe"></i><span id="langSwitchLabel">العربية</span>
+      </button>
+      <a href="favorites.html" class="navbar__icon-btn" aria-label="Favorites"><i class="fa-regular fa-heart"></i></a>
+      <a href="login.html" class="btn btn--ghost btn--sm" data-i18n="nav.login">Login</a>
+      <a href="register.html" class="btn btn--primary btn--sm" data-i18n="nav.register">Sell a Vehicle</a>
+    </div>
+    <button class="navbar__burger" id="navbarBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ========================================================= -->
+<!-- PAGE HEADER -->
+<!-- ========================================================= -->
+<section class="page-header">
+  <div class="page-header__stripe"></div>
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html" data-i18n="nav.home">Home</a> <i class="fa-solid fa-chevron-right"></i> <span data-i18n="nav.cars">Cars</span></nav>
+    <h1 data-i18n="listing.carsTitle">Cars for Sale</h1>
+    <p id="resultsCount" class="page-header__count">Loading results...</p>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- LISTING LAYOUT: FILTER SIDEBAR + RESULTS GRID -->
+<!-- ========================================================= -->
+<section class="section listing-section">
+  <div class="container listing-layout">
+
+    <!-- FILTER SIDEBAR -->
+    <aside class="filters-sidebar" id="filtersSidebar">
+      <div class="filters-sidebar__header">
+        <h3 data-i18n="filters.title">Filters</h3>
+        <button id="clearFilters" class="link-reset" data-i18n="filters.clear">Clear all</button>
+      </div>
+
+      <div class="filter-group">
+        <label data-i18n="search.keyword">Keyword</label>
+        <input type="text" id="filterKeyword" placeholder="Search..." />
+      </div>
+
+      <div class="filter-group">
+        <label data-i18n="search.brand">Brand</label>
+        <select id="filterBrand"><option value="" data-i18n="search.anyBrand">Any Brand</option></select>
+      </div>
+
+      <div class="filter-group">
+        <label data-i18n="filters.category">Category</label>
+        <select id="filterCategory"><option value="" data-i18n="filters.anyCategory">Any Category</option></select>
+      </div>
+
+      <div class="filter-group filter-group--range">
+        <label data-i18n="search.priceFrom">Price Range</label>
+        <div class="range-inputs">
+          <input type="number" id="filterPriceMin" placeholder="Min" />
+          <span>-</span>
+          <input type="number" id="filterPriceMax" placeholder="Max" />
+        </div>
+      </div>
+
+      <div class="filter-group filter-group--range">
+        <label data-i18n="search.year">Year</label>
+        <div class="range-inputs">
+          <input type="number" id="filterYearMin" placeholder="From" />
+          <span>-</span>
+          <input type="number" id="filterYearMax" placeholder="To" />
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label data-i18n="search.fuel">Fuel</label>
+        <select id="filterFuel">
+          <option value="" data-i18n="search.anyFuel">Any Fuel</option>
+          <option value="petrol" data-i18n="fuel.petrol">Petrol</option>
+          <option value="diesel" data-i18n="fuel.diesel">Diesel</option>
+          <option value="electric" data-i18n="fuel.electric">Electric</option>
+          <option value="hybrid" data-i18n="fuel.hybrid">Hybrid</option>
+          <option value="lpg" data-i18n="fuel.lpg">LPG</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label data-i18n="search.transmission">Transmission</label>
+        <select id="filterTransmission">
+          <option value="" data-i18n="search.anyTransmission">Any</option>
+          <option value="manual" data-i18n="transmission.manual">Manual</option>
+          <option value="automatic" data-i18n="transmission.automatic">Automatic</option>
+          <option value="semi-automatic" data-i18n="transmission.semi">Semi-Automatic</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label data-i18n="search.mileage">Max Mileage</label>
+        <input type="number" id="filterMileage" placeholder="km" />
+      </div>
+
+      <div class="filter-group">
+        <label data-i18n="search.condition">Condition</label>
+        <select id="filterCondition">
+          <option value="" data-i18n="search.anyCondition">Any Condition</option>
+          <option value="new" data-i18n="condition.new">New</option>
+          <option value="used" data-i18n="condition.used">Used</option>
+          <option value="certified-pre-owned" data-i18n="condition.certified">Certified Pre-Owned</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label data-i18n="filters.location">Location</label>
+        <input type="text" id="filterCity" placeholder="City" />
+      </div>
+
+      <button class="btn btn--primary filters-sidebar__apply" id="applyFilters" data-i18n="filters.apply">Apply Filters</button>
+    </aside>
+
+    <!-- RESULTS -->
+    <div class="listing-results">
+      <div class="listing-toolbar">
+        <button class="btn btn--ghost btn--sm filters-toggle-mobile" id="filtersToggleMobile">
+          <i class="fa-solid fa-sliders"></i> <span data-i18n="filters.title">Filters</span>
+        </button>
+        <div class="listing-toolbar__sort">
+          <label for="sortSelect" data-i18n="filters.sortBy">Sort by</label>
+          <select id="sortSelect">
+            <option value="-createdAt" data-i18n="filters.sortNewest">Newest First</option>
+            <option value="price" data-i18n="filters.sortPriceLow">Price: Low to High</option>
+            <option value="-price" data-i18n="filters.sortPriceHigh">Price: High to Low</option>
+            <option value="-year" data-i18n="filters.sortYear">Year: Newest</option>
+            <option value="mileage" data-i18n="filters.sortMileage">Mileage: Lowest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="listings-grid listings-grid--full" id="resultsGrid">
+        <!-- Vehicle cards injected by search.js -->
+      </div>
+
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <i class="fa-solid fa-car-burst"></i>
+        <h3 data-i18n="listing.emptyTitle">No vehicles match your filters</h3>
+        <p data-i18n="listing.emptyText">Try adjusting your search criteria or clearing filters.</p>
+      </div>
+
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- FOOTER -->
+<!-- ========================================================= -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a href="index.html" class="navbar__logo">
+        <span class="navbar__logo-mark">M</span>
+        <span class="navbar__logo-text">MOAMENOON <em>CARS</em></span>
+      </a>
+      <p data-i18n="footer.tagline">Egypt's trusted marketplace for cars, motorcycles and trucks.</p>
+      <div class="footer__socials">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.explore">Explore</h4>
+      <a href="cars.html" data-i18n="nav.cars">Cars</a>
+      <a href="motorcycles.html" data-i18n="nav.motorcycles">Motorcycles</a>
+      <a href="trucks.html" data-i18n="nav.trucks">Trucks</a>
+      <a href="favorites.html" data-i18n="footer.favorites">Favorites</a>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.company">Company</h4>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="dashboard.html" data-i18n="footer.dashboard">Seller Dashboard</a>
+      <a href="register.html" data-i18n="footer.sell">Sell Your Vehicle</a>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.contact">Get In Touch</h4>
+      <a href="tel:+201000000000"><i class="fa-solid fa-phone"></i> +20 100 000 0000</a>
+      <a href="mailto:support@moamenooncars.com"><i class="fa-solid fa-envelope"></i> support@moamenooncars.com</a>
+      <span><i class="fa-solid fa-location-dot"></i> Cairo, Egypt</span>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <span>&copy; <span id="footerYear"></span> Moamenoon Cars. <span data-i18n="footer.rights">All rights reserved.</span></span>
+      <div class="footer__legal">
+        <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="#" data-i18n="footer.terms">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.11.5/i18next.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/2.5.2/i18nextHttpBackend.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/8.0.0/i18nextBrowserLanguageDetector.min.js"></script>
+
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

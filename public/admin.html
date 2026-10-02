@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>لوحة الإدارة | مؤمنون للسيارات</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#070707">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="page" data-title="adm_page_title">
+  <div class="bg-fx" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="grid"></span></div>
+
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a class="brand" href="index.html" aria-label="MOAMENOON">
+        <img class="logo-img" src="img/logo-mark.png" alt="" width="260" height="203">
+        <span class="brand-name" data-i18n="brand"></span>
+      </a>
+      <div class="nav-actions">
+        <button class="lang" id="langBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+          <span class="lbl" data-i18n="lang_label">EN</span>
+        </button>
+        <div class="nav-auth" id="navAuth"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap" id="adm"><p class="muted" data-i18n="loading"></p></div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/i18n-app.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/carview.js"></script>
+  <script src="js/carform.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Us | Moamenoon Cars</title>
+
+<link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
+
+<link rel="stylesheet" href="../assets/css/variables.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/components.css" />
+<link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body class="page-about">
+
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <span class="navbar__logo-mark">M</span>
+      <span class="navbar__logo-text">MOAMENOON <em>CARS</em></span>
+    </a>
+    <nav class="navbar__nav" id="navbarNav">
+      <a href="index.html" class="navbar__link" data-i18n="nav.home">Home</a>
+      <a href="cars.html" class="navbar__link" data-i18n="nav.cars">Cars</a>
+      <a href="motorcycles.html" class="navbar__link" data-i18n="nav.motorcycles">Motorcycles</a>
+      <a href="trucks.html" class="navbar__link" data-i18n="nav.trucks">Trucks</a>
+      <a href="about.html" class="navbar__link is-active" data-i18n="nav.about">About</a>
+      <a href="contact.html" class="navbar__link" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="lang-switch" id="langSwitch" aria-label="Switch language"><i class="fa-solid fa-globe"></i><span id="langSwitchLabel">العربية</span></button>
+      <a href="favorites.html" class="navbar__icon-btn" aria-label="Favorites"><i class="fa-regular fa-heart"></i></a>
+      <a href="login.html" class="btn btn--ghost btn--sm" data-i18n="nav.login">Login</a>
+      <a href="register.html" class="btn btn--primary btn--sm" data-i18n="nav.register">Sell a Vehicle</a>
+    </div>
+    <button class="navbar__burger" id="navbarBurger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="page-header__stripe"></div>
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html" data-i18n="nav.home">Home</a> <i class="fa-solid fa-chevron-right"></i> <span data-i18n="nav.about">About</span></nav>
+    <h1 data-i18n="about.title">Driving Trust Forward</h1>
+    <p class="page-header__count" data-i18n="about.subtitle">Egypt's premium marketplace for cars, motorcycles and trucks.</p>
+  </div>
+</section>
+
+<section class="section about-story">
+  <div class="container about-story__grid">
+    <div class="about-story__visual" data-aos="fade-right">
+      <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1200&auto=format&fit=crop" alt="Moamenoon Cars team" />
+    </div>
+    <div class="about-story__content" data-aos="fade-left">
+      <span class="section-heading__eyebrow" data-i18n="about.eyebrow">Our Story</span>
+      <h2 data-i18n="about.storyTitle">Built By Enthusiasts, For Enthusiasts</h2>
+      <p data-i18n="about.storyText1">Moamenoon Cars started with a simple idea: buying or selling a vehicle in Egypt should be transparent, fast, and trustworthy. We built a platform that verifies every listing and puts buyers directly in touch with sellers.</p>
+      <p data-i18n="about.storyText2">Today, thousands of cars, motorcycles and trucks pass through our marketplace every month — each one reviewed by our team before it reaches you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section about-values">
+  <div class="container">
+    <div class="section-heading section-heading--center" data-aos="fade-up">
+      <span class="section-heading__eyebrow" data-i18n="about.valuesEyebrow">What Drives Us</span>
+      <h2 data-i18n="about.valuesTitle">Our Core Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card" data-aos="fade-up" data-aos-delay="0">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3 data-i18n="about.value1Title">Transparency</h3>
+        <p data-i18n="about.value1Text">Every listing is verified, every spec is accurate, every price is clear.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-handshake"></i>
+        <h3 data-i18n="about.value2Title">Trust</h3>
+        <p data-i18n="about.value2Text">We connect real buyers with real sellers — no bots, no spam.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-gauge-high"></i>
+        <h3 data-i18n="about.value3Title">Speed</h3>
+        <p data-i18n="about.value3Text">List a vehicle in minutes and start receiving inquiries the same day.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa-solid fa-heart"></i>
+        <h3 data-i18n="about.value4Title">Passion</h3>
+        <p data-i18n="about.value4Text">We're car people first — the platform is built with real enthusiasm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section stats-section">
+  <div class="stats-section__stripe"></div>
+  <div class="container stats-grid">
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="0"><span class="stat-card__number" data-count="12500">0</span><span class="stat-card__label" data-i18n="stats.listings">Active Listings</span></div>
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="100"><span class="stat-card__number" data-count="8300">0</span><span class="stat-card__label" data-i18n="stats.sellers">Verified Sellers</span></div>
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="200"><span class="stat-card__number" data-count="45000">0</span><span class="stat-card__label" data-i18n="stats.customers">Happy Customers</span></div>
+    <div class="stat-card" data-aos="zoom-in" data-aos-delay="300"><span class="stat-card__number" data-count="20">0</span><span class="stat-card__label" data-i18n="stats.cities">Cities Covered</span></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <a href="index.html" class="navbar__logo">
+        <span class="navbar__logo-mark">M</span>
+        <span class="navbar__logo-text">MOAMENOON <em>CARS</em></span>
+      </a>
+      <p data-i18n="footer.tagline">Egypt's trusted marketplace for cars, motorcycles and trucks.</p>
+      <div class="footer__socials">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.explore">Explore</h4>
+      <a href="cars.html" data-i18n="nav.cars">Cars</a>
+      <a href="motorcycles.html" data-i18n="nav.motorcycles">Motorcycles</a>
+      <a href="trucks.html" data-i18n="nav.trucks">Trucks</a>
+      <a href="favorites.html" data-i18n="footer.favorites">Favorites</a>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.company">Company</h4>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="dashboard.html" data-i18n="footer.dashboard">Seller Dashboard</a>
+      <a href="register.html" data-i18n="footer.sell">Sell Your Vehicle</a>
+    </div>
+    <div class="footer__col">
+      <h4 data-i18n="footer.contact">Get In Touch</h4>
+      <a href="tel:+201000000000"><i class="fa-solid fa-phone"></i> +20 100 000 0000</a>
+      <a href="mailto:support@moamenooncars.com"><i class="fa-solid fa-envelope"></i> support@moamenooncars.com</a>
+      <span><i class="fa-solid fa-location-dot"></i> Cairo, Egypt</span>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <span>&copy; <span id="footerYear"></span> Moamenoon Cars. <span data-i18n="footer.rights">All rights reserved.</span></span>
+      <div class="footer__legal">
+        <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+        <a href="#" data-i18n="footer.terms">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/23.11.5/i18next.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/2.5.2/i18nextHttpBackend.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/8.0.0/i18nextBrowserLanguageDetector.min.js"></script>
+<script src="../assets/js/i18n.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
